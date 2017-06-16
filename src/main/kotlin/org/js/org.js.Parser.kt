@@ -40,18 +40,30 @@ open class Parser : BaseParser<Expression>() {
     open fun Parens(): Rule = Sequence('(', Expr(), ')')
 
     open fun list() = Sequence(
-            Digits(),
+            Quote(),
+            String(),
             InListExpression.addToList(match(), peek()),
+            Quote(),
             ZeroOrMore(
                     COMMA(),
-                    Digits(),
-                    InListExpression.addToList(match(), peek())
+                    Quote(),
+                    String(),
+                    InListExpression.addToList(match(), peek()),
+                    Quote()
             )
     )
 
     open fun Digits() = OneOrMore(CharRange('0', '9'))
 
     open fun Alnum() = OneOrMore(AnyOf("0123456789abcdefghijklmnopqrstuvwxyz"))
+
+    open fun String(): Rule {
+        return ZeroOrMore(
+                Sequence(TestNot(AnyOf("\r\n\"\\")), BaseParser.ANY)
+        ).suppressSubnodes()
+    }
+
+    open fun Quote() = fromCharLiteral('"')
 
     open fun VarName(): Rule = Sequence(
             alphabets(),
