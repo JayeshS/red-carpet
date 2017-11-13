@@ -15,6 +15,21 @@
         <kotlin.version>1.1.51</kotlin.version>
         <guava.version>23.0</guava.version>
     </properties>
+
+    <scm>
+        <connection>scm:git:git@github.com:JayeshS/red-carpet.git</connection>
+        <tag>v1.0.0</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>build-test-release</id>
+            <name>build-test-release</name>
+            <url>http://nexus.sb.karmalab.net/nexus/content/repositories/build-test-release</url>
+        </repository>
+    </distributionManagement>
+
+
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -26,18 +41,13 @@
             <artifactId>parboiled-java</artifactId>
             <version>1.1.8</version>
         </dependency>
-        <dependency>
-            <groupId>org.parboiled</groupId>
-            <artifactId>parboiled-java</artifactId>
-            <version>1.1.8</version>
-        </dependency>
+        <!-- Tests -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.8.0</version>
             <scope>test</scope>
         </dependency>
-        <!-- Tests -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jre8</artifactId>
@@ -95,6 +105,27 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
             </plugin>
         </plugins>
     </build>
