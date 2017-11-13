@@ -5,7 +5,7 @@
 
     <artifactId>red-carpet</artifactId>
     <packaging>jar</packaging>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
     <name>red-carpet</name>
     <url>http://maven.apache.org</url>
     <properties>
@@ -18,7 +18,7 @@
 
     <scm>
         <connection>scm:git:git@github.com:JayeshS/red-carpet.git</connection>
-        <tag>v1.0.0</tag>
+        <tag>v1.1</tag>
     </scm>
 
     <distributionManagement>
