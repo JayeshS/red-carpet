@@ -1,4 +1,4 @@
-package org.js
+package redcarpet.parser.internal
 
 class PercentExpression : Expression() {
     var varname: String = ""

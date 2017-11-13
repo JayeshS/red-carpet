@@ -1,4 +1,4 @@
-package org.js
+package redcarpet.parser.internal
 
 abstract class Expression {
 

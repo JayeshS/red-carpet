@@ -1,4 +1,4 @@
-package org.js
+package redcarpet.parser.internal
 
 import org.parboiled.BaseParser
 import org.parboiled.Rule
