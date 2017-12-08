@@ -3,10 +3,10 @@ package redcarpet.parser.internal
 class ConjunctionExpression(var expr1: Expression = AlwaysFalseExpression(), var expr2: Expression = AlwaysFalseExpression(), var conjunction: String = "") : Expression() {
 
     override fun eval(input: Map<String, String>): Boolean {
-        if (conjunction == " or ") {
+        if (conjunction.toLowerCase() == " or ") {
             return expr1.eval(input) || expr2.eval(input)
         }
-        if (conjunction == " and ") {
+        if (conjunction.toLowerCase() == " and ") {
             return expr1.eval(input) && expr2.eval(input)
         }
         throw IllegalArgumentException("Unexpected conjunction : $conjunction")

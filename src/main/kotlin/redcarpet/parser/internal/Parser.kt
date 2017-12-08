@@ -16,9 +16,21 @@ open class Parser : BaseParser<Expression>() {
 
     open fun Conjunction() = FirstOf(or(), and())
 
-    open fun factor() = FirstOf(Condition(), Parens())
+    open fun factor() = FirstOf(OnOff(), Condition(), Parens())
 
     open fun Condition() = FirstOf(Percentage(), InCondition())
+
+    open fun On() = Sequence(
+            push(AlwaysTrueExpression()),
+            IgnoreCase("ON")
+    )
+
+    open fun Off() = Sequence(
+            push(AlwaysFalseExpression()),
+            IgnoreCase("OFF")
+    )
+
+    open fun OnOff() = FirstOf(On(), Off())
 
     open fun InCondition() = Sequence(
             push(InListExpression()),
@@ -70,8 +82,8 @@ open class Parser : BaseParser<Expression>() {
             ZeroOrMore(Alnum())
     )
 
-    open fun or() = fromStringLiteral(" or ")
-    open fun and() = fromStringLiteral(" and ")
+    open fun or() = IgnoreCase(" or ")
+    open fun and() = IgnoreCase(" and ")
 
     open fun alphabets(): Rule = OneOrMore(alphabet())
 
