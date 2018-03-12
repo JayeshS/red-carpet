@@ -23,9 +23,9 @@
 
     <distributionManagement>
         <repository>
-            <id>build-test-release</id>
-            <name>build-test-release</name>
-            <url>http://nexus.sb.karmalab.net/nexus/content/repositories/build-test-release</url>
+            <id>releases</id>
+            <name>Internal Releases</name>
+            <url>http://nexus.sb.karmalab.net/nexus/content/repositories/releases</url>
         </repository>
     </distributionManagement>
 
