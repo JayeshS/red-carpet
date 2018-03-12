@@ -9,8 +9,8 @@ class PercentExpression : Expression() {
     }
 
     private fun percentMatches(entry: Map.Entry<String, String>): Boolean {
-        if (percent == 0) return false
-        return entry.value.hashCode() % (100 / percent) == 0
+        val hash = Hasher.hash(entry.value)
+        return Math.abs(hash % 100) < percent
     }
 
     companion object Builder {
